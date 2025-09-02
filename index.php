@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Rentabilidad para Negocios</title>
+    <title>Análisis Básico de Rentabilidad</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -85,21 +85,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body class="bg-gray-50">
-    <header class="bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between">
-                <h1 class="text-3xl font-bold text-gray-900"><span class="text-blue-600">Biz</span>Calc</h1>
-                <button class="p-2 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100"><i data-feather="help-circle"></i></button>
-            </div>
-        </div>
-    </header>
+    <?php include 'navbar.php'; ?>
 
     <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <form method="POST" action="index.php" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Input Section -->
             <div class="lg:col-span-2 space-y-8">
                 <div class="bg-white rounded-xl shadow p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center"><i data-feather="dollar-sign" class="mr-2 text-blue-500"></i>Costos de Operación</h2>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center"><i data-feather="dollar-sign" class="mr-2 text-blue-500"></i>Costos de Operación (Básico)</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="fixedCosts" class="block text-sm font-medium text-gray-700 mb-1">Costos Fijos Mensuales</label>
@@ -107,7 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-500 sm:text-sm">$</span></div>
                                 <input type="number" id="fixedCosts" name="fixedCosts" value="<?= htmlspecialchars($fixedCosts > 0 ? $fixedCosts : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2" placeholder="0.00" step="0.01">
                             </div>
-                            <div class="info-box">Son los gastos que tienes vendas o no, como el alquiler, sueldos base o servicios. No cambian con la producción.</div>
                         </div>
                         <div>
                             <label for="variableCostPerUnit" class="block text-sm font-medium text-gray-700 mb-1">Costo Variable por Unidad</label>
@@ -115,13 +107,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-500 sm:text-sm">$</span></div>
                                 <input type="number" id="variableCostPerUnit" name="variableCostPerUnit" value="<?= htmlspecialchars($variableCostPerUnit > 0 ? $variableCostPerUnit : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2" placeholder="0.00" step="0.01">
                             </div>
-                            <div class="info-box">Es lo que te cuesta producir una sola unidad de tu producto (materia prima, empaque, comisiones por venta).</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="bg-white rounded-xl shadow p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center"><i data-feather="trending-up" class="mr-2 text-blue-500"></i>Información de Ventas</h2>
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center"><i data-feather="trending-up" class="mr-2 text-blue-500"></i>Información de Ventas (Básico)</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="salePrice" class="block text-sm font-medium text-gray-700 mb-1">Precio de Venta por Unidad</label>
@@ -129,24 +120,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-500 sm:text-sm">$</span></div>
                                 <input type="number" id="salePrice" name="salePrice" value="<?= htmlspecialchars($salePrice > 0 ? $salePrice : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2" placeholder="0.00" step="0.01">
                             </div>
-                            <div class="info-box">La cantidad de dinero que recibes de un cliente por cada producto o servicio vendido.</div>
                         </div>
                         <div>
                             <label for="unitsSold" class="block text-sm font-medium text-gray-700 mb-1">Unidades Vendidas (Estimado)</label>
                             <input type="number" id="unitsSold" name="unitsSold" value="<?= htmlspecialchars($unitsSold > 0 ? $unitsSold : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2" placeholder="0">
-                            <div class="info-box">La cantidad de productos o servicios que planeas vender en el período que estás calculando.</div>
                         </div>
                     </div>
                 </div>
                 
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg shadow-md transition duration-150 ease-in-out transform hover:scale-[1.01] flex items-center justify-center">
-                    <i data-feather="calculator" class="mr-2"></i>Calcular Rentabilidad
+                    <i data-feather="calculator" class="mr-2"></i>Calcular Rentabilidad Básica
                 </button>
             </div>
             
             <!-- Results Section -->
             <div class="space-y-6">
-                <div id="feedbackCard" class="result-card bg-white rounded-xl shadow p-6 border-l-4 border-<?= $feedback_color ?>-500 <?= $show_results ? '' : 'hidden' ?>">
+                 <div id="feedbackCard" class="result-card bg-white rounded-xl shadow p-6 border-l-4 border-<?= $feedback_color ?>-500 <?= $show_results ? '' : 'hidden' ?>">
                     <h3 class="text-lg font-medium text-gray-800 mb-3 flex items-center"><i data-feather="<?= $feedback_icon ?>" class="mr-2 text-<?= $feedback_color ?>-500"></i>Diagnóstico del Negocio</h3>
                     <p class="text-md font-semibold text-gray-700"><?= $feedback_title ?></p>
                     <p class="text-sm text-gray-600 mt-2"><?= $feedback_message ?></p>
@@ -166,6 +155,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
 
+                <div id="totalVariableCostsCard" class="result-card bg-white rounded-xl shadow p-6 border-l-4 border-orange-500 <?= $show_results ? '' : 'hidden' ?>">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Costos Variables Totales</h3>
+                    <p class="text-3xl font-bold text-gray-900"><?= $show_results ? '$' . number_format($totalVariableCosts, 2, ',', '.') : '$0,00' ?></p>
+                    <div class="info-box">
+                        <p class="text-gray-600">El costo total que varía directamente con la cantidad de unidades producidas y vendidas.</p>
+                        <?php if ($show_results): ?>
+                            <div class="mt-2 pt-2 border-t border-gray-200 space-y-1">
+                                <p class="text-xs font-semibold text-gray-700">Fórmula General: <span class="font-normal italic text-gray-500">Costo Variable por Unidad &times; Unidades Vendidas</span></p>
+                                <p class="text-xs font-semibold text-gray-700">Cálculo Aplicado: <span class="formula"><?= number_format($variableCostPerUnit, 2, ',', '.') ?> &times; <?= $unitsSold ?></span></p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
                 <div id="totalCostsCard" class="result-card bg-white rounded-xl shadow p-6 border-l-4 border-blue-500 <?= $show_results ? '' : 'hidden' ?>">
                     <h3 class="text-lg font-medium text-gray-700 mb-2">Costos Totales</h3>
                     <p class="text-3xl font-bold text-gray-900"><?= $show_results ? '$' . number_format($totalCosts, 2, ',', '.') : '$0,00' ?></p>
@@ -173,18 +176,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <p class="text-gray-600">La suma de todos tus gastos, tanto fijos como variables, para el nivel de ventas actual.</p>
                         <?php if ($show_results): ?>
                             <div class="mt-2 pt-2 border-t border-gray-200 space-y-1">
-                                <p class="text-xs font-semibold text-gray-700">Fórmula General: <span class="font-normal italic text-gray-500">Costos Fijos + (Costo Variable &times; Unidades)</span></p>
-                                <p class="text-xs font-semibold text-gray-700">Cálculo Aplicado: <span class="formula"><?= number_format($fixedCosts, 2, ',', '.') ?> + (<?= number_format($variableCostPerUnit, 2, ',', '.') ?> &times; <?= $unitsSold ?>)</span></p>
+                                <p class="text-xs font-semibold text-gray-700">Fórmula General: <span class="font-normal italic text-gray-500">Costos Fijos + Costos Variables Totales</span></p>
+                                <p class="text-xs font-semibold text-gray-700">Cálculo Aplicado: <span class="formula"><?= number_format($fixedCosts, 2, ',', '.') ?> + <?= number_format($totalVariableCosts, 2, ',', '.') ?></span></p>
                             </div>
                         <?php endif; ?>
                     </div>
                 </div>
                 
                 <div id="profitCard" class="result-card bg-white rounded-xl shadow p-6 border-l-4 border-purple-500 <?= $show_results ? '' : 'hidden' ?>">
-                    <h3 class="text-lg font-medium text-gray-700 mb-2">Utilidad Neta</h3>
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Utilidad Bruta</h3>
                     <p class="text-3xl font-bold <?= $show_results && $profit < 0 ? 'text-red-600' : 'text-green-600' ?>"><?= $show_results ? '$' . number_format(abs($profit), 2, ',', '.') : '$0,00' ?></p>
                     <div class="info-box">
-                        <p class="text-gray-600">Esta es tu ganancia (o pérdida) real. Lo que queda después de que todos los costos se restan de los ingresos.</p>
+                        <p class="text-gray-600">Esta es tu ganancia (o pérdida) antes de impuestos y otros gastos. Lo que queda después de que los costos operativos se restan de los ingresos.</p>
                         <?php if ($show_results): ?>
                             <div class="mt-2 pt-2 border-t border-gray-200 space-y-1">
                                 <p class="text-xs font-semibold text-gray-700">Fórmula General: <span class="font-normal italic text-gray-500">Ingresos Totales - Costos Totales</span></p>
