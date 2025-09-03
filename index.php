@@ -100,6 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-500 sm:text-sm">$</span></div>
                                 <input type="number" id="fixedCosts" name="fixedCosts" value="<?= htmlspecialchars($fixedCosts > 0 ? $fixedCosts : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2" placeholder="0.00" step="0.01">
                             </div>
+                            <p class="mt-2 text-xs text-gray-500">Incluye renta, salarios, servicios, etc.</p>
                         </div>
                         <div>
                             <label for="variableCostPerUnit" class="block text-sm font-medium text-gray-700 mb-1">Costo Variable por Unidad</label>
@@ -107,6 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-500 sm:text-sm">$</span></div>
                                 <input type="number" id="variableCostPerUnit" name="variableCostPerUnit" value="<?= htmlspecialchars($variableCostPerUnit > 0 ? $variableCostPerUnit : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2" placeholder="0.00" step="0.01">
                             </div>
+                            <p class="mt-2 text-xs text-gray-500">Costo de materiales, producción, etc. por cada unidad.</p>
                         </div>
                     </div>
                 </div>
@@ -120,10 +122,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><span class="text-gray-500 sm:text-sm">$</span></div>
                                 <input type="number" id="salePrice" name="salePrice" value="<?= htmlspecialchars($salePrice > 0 ? $salePrice : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2" placeholder="0.00" step="0.01">
                             </div>
+                            <p class="mt-2 text-xs text-gray-500">El precio al que vendes cada unidad.</p>
                         </div>
                         <div>
                             <label for="unitsSold" class="block text-sm font-medium text-gray-700 mb-1">Unidades Vendidas (Estimado)</label>
                             <input type="number" id="unitsSold" name="unitsSold" value="<?= htmlspecialchars($unitsSold > 0 ? $unitsSold : '') ?>" class="focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2" placeholder="0">
+                            <p class="mt-2 text-xs text-gray-500">La cantidad de unidades que planeas vender.</p>
                         </div>
                     </div>
                 </div>
